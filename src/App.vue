@@ -1,17 +1,14 @@
 
 
 <template>
-
-  <div class="common-layout">
+  <daohang/>
+  <div class="common-layout layout11">
     <el-container>
-      <el-container >
-        <daohang/>
-          <xinjianrenwu/>
-        <el-footer>Footer</el-footer>
+      <el-container  class="main-container1">
+        <xinjianrenwu/>
+        <div class="main-container2"><qingxi/></div>
       </el-container>
-      <el-container>
-        <el-main>Main</el-main>
-      </el-container>
+      <el-main>Main</el-main>
     </el-container>
   </div>
 </template>
@@ -19,8 +16,25 @@
 import Xinjianrenwu from "@/components/xinjianrenwu.vue";
 import daohang from "@/components/daohang.vue";
 import Daohang from "@/components/daohang.vue";
+import qingxi from "@/components/qingxi.vue"
 </script>
 
 <style scoped>
+.layout11{
+  display: flex;
+  flex-direction: column; /* 设置垂直布局 */
+  width:50%;
+}
+.main-container1 {
+  display: flex;
+  flex-direction: column; /* 设置垂直布局 */
+  height: 100%; /* 使用视口高度作为容器的高度 */
+  width: 100%;
+}
+.main-container2{
+  width: 100%;
+  padding: 0px;
+  margin: 0 0 0 0;
+}
 
 </style>
