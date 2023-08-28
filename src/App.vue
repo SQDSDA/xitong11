@@ -6,7 +6,7 @@
     <el-container>
       <el-container  class="main-container1">
         <xinjianrenwu/>
-        <div class="main-container2"><qingxi/></div>
+        <qingxi/>
       </el-container>
       <el-main>Main</el-main>
     </el-container>
@@ -31,10 +31,6 @@ import qingxi from "@/components/qingxi.vue"
   height: 100%; /* 使用视口高度作为容器的高度 */
   width: 100%;
 }
-.main-container2{
-  width: 100%;
-  padding: 0px;
-  margin: 0 0 0 0;
-}
+
 
 </style>

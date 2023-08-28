@@ -1,10 +1,9 @@
 <template>
-  <el-row :style="{margin:'20px 0px 0px 10px',
-  width:'100%'}" class="--el-box-shadow-dark">
-    <el-col :span="24"
-            :style="{width:'100%'}">
-      <div class="grid-content ep-bg-purple-dark" :style="{width:'100%'}">
-        <span class="text_header" :style="{width:'100%'}">&nbsp;&nbsp;新建爬取任务</span></div></el-col>
+  <el-row :style="{margin:'20px -15px 0px 8px',
+}" class="el_row11">
+    <el-col :span="24">
+      <div class="grid-content ep-bg-purple-dark --el-box-shadow-darkk" >
+        <span class="text_header">&nbsp;&nbsp;新建爬取任务</span></div></el-col>
   </el-row>
   <el-aside :style="{boxShadow:'--el-box-shadow-dark',
     width:'100%',
@@ -45,12 +44,17 @@ https://blog.csdn.net/Menqq/article/details/115002838
 -->
 
       </el-form-item>
-      <el-form-item label="爬取模式选择" required>
-        <el-checkbox-group v-model="checkboxGroup1">
-          <el-checkbox-button v-for="city in cities" :key="city" :label="city" class="buttton_model">
-            {{ city }}
-          </el-checkbox-button>
-        </el-checkbox-group>
+      <el-form-item label="爬取模式选择" required >
+<!--        <el-checkbox-group v-model="checkboxGroup1" >-->
+<!--          <el-checkbox-button class="buttton_model" v-for="city in cities" :key="city" :label="city" >-->
+<!--            {{ city }}-->
+<!--          </el-checkbox-button>-->
+          <a-radio-group v-model:value="checkboxGroup1" class="father_button">
+            <a-radio-button value="按用户爬取" class="buttton_model">按用户爬取</a-radio-button>
+            <a-radio-button value="按关键词爬取" class="buttton_model">按关键词爬取</a-radio-button>
+            <a-radio-button value="按话题爬取" class="buttton_model">按话题爬取</a-radio-button>
+          </a-radio-group>
+<!--        </el-checkbox-group>-->
 <!--        <el-col :span="11">-->
 <!--          <el-form-item prop="date1">-->
 <!--            <el-date-picker-->
@@ -76,64 +80,60 @@ https://blog.csdn.net/Menqq/article/details/115002838
 <!--          </el-form-item>-->
 <!--        </el-col>-->
       </el-form-item>
-      <el-form-item label="批量爬取上传" prop="IDD">
+
+      <el-form-item label="批量爬取上传" prop="IDD" class="form_file">
         <el-upload
             ref="upload"
-            class="upload-demo"
+            class="upload-demo upload-demo1"
+            drag
             action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+            multiple
             :limit="1"
             :on-exceed="handleExceed"
             :auto-upload="false"
         >
-          <template #trigger>
-            <el-button type="primary" class="el_cc_button1">select file</el-button>
-          </template>
-          <el-button class="ml-3 el_cc_button2" type="success"  @click="submitUpload">
-            upload to server
-          </el-button>
+          <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+          <div class="el-upload__text">
+            Drop file here or <em>click to upload</em>
+          </div>
           <template #tip>
-            <div class="el-upload__tip text-red">
+            <div class="el-upload__tip">
               支持格式：csv、xls、xlsx ，单个文件不能超过5MB
             </div>
           </template>
         </el-upload>
       </el-form-item>
-      <el-form-item label="Instant delivery" prop="delivery">
-        <el-switch v-model="ruleForm.delivery" />
+      <el-form-item :label="selectedLabel" prop="name" class="form_filee">
+        <el-input v-model="ruleForm.name" />
+        <div class=" message_warn">用逗号作为分隔符；按话题爬取时，可以输入hashtag</div>
       </el-form-item>
-      <el-form-item label="Activity type" prop="type">
-        <el-checkbox-group v-model="ruleForm.type">
-          <el-checkbox label="Online activities" name="type" />
-          <el-checkbox label="Promotion activities" name="type" />
-          <el-checkbox label="Offline activities" name="type" />
-          <el-checkbox label="Simple brand exposure" name="type" />
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources" prop="resource">
-        <el-radio-group v-model="ruleForm.resource">
-          <el-radio label="Sponsorship" />
-          <el-radio label="Venue" />
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form" prop="desc">
+      <el-form-item label="爬取备注" prop="desc">
         <el-input v-model="ruleForm.desc" type="textarea" />
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm(ruleFormRef)">
-          Create
+      <el-form-item >
+        <div class="button_chuang">
+        <el-button type="primary" @click="submitForm(ruleFormRef)" class="chuangjian">
+          创建任务
         </el-button>
-        <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+        <el-button @click="resetForm(ruleFormRef)" class="chuangjian">重置</el-button>
+          </div>
       </el-form-item>
     </el-form>
   </el-aside>
 </template>
 
 <script lang="ts" setup>
+// ref 是 Vue 3 中的一个函数，用于将普通的 JavaScript 数据转换成响应式数据，使其在 Vue 组件中能够被自动追踪和更新。
+import { UploadFilled } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { computed } from 'vue';
+import { getSelectedLabel } from '../assets/xinjianrenwuts/chage_label'; // 请根据实际路径调整
 // 文件上传
 import { genFileId } from 'element-plus'
 import type { UploadInstance, UploadProps, UploadRawFile } from 'element-plus'
+
+
 
 const upload = ref<UploadInstance>()
 
@@ -148,8 +148,8 @@ const submitUpload = () => {
   upload.value!.submit()
 }
 // 爬取模式选择
-const checkboxGroup1 = ref(['按用户爬取'])
-const cities = ['按用户爬取', '按关键词爬取', '按话题爬取']
+const checkboxGroup1= ref<string>('按用户爬取')
+// const cities = ['按用户爬取', '按关键词爬取', '按话题爬取']
 // 日期选择器
 const value2 = ref('')
 
@@ -271,7 +271,7 @@ const rules = reactive<FormRules<RuleForm>>({
     },
   ],
   desc: [
-    { required: true, message: 'Please input activity form', trigger: 'blur' },
+    { required: false, message: 'Please input activity form', trigger: 'blur' },
   ],
 })
 
@@ -312,7 +312,9 @@ function getCurrentDateTimeNumeric(): number {
 
   return dateTimeNumeric;
 }
-
+const selectedLabel = computed(() => {
+  return getSelectedLabel(checkboxGroup1.value);
+});
 
 </script>
 <!--<style scoped>-->
@@ -338,6 +340,12 @@ function getCurrentDateTimeNumeric(): number {
 
 .ep-bg-purple-dark{
   background: #f2f2f2;
+}
+.--el-box-shadow-darkk{
+width: 100%;
+  margin-right: -3px; /* 使用负边距使子元素超出父元素 */
+}
+.el_row11{
 }
 .--el-box-shadow-dark{
   //background-color: #333; /* 设置背景颜色 */
@@ -377,12 +385,12 @@ function getCurrentDateTimeNumeric(): number {
 }
 
 .text_header{
-  //margin-top: 10px;
+  /*margin-top: 10px;*/
   line-height: 40px;
   font-weight: bold;
   left: 20px;
   margin-right: 30px;
-  //font-size: "bold";
+  /*font-size: "bold";*/
 }
 
 .el_cc_button1{
@@ -395,7 +403,40 @@ function getCurrentDateTimeNumeric(): number {
 }
 
 .buttton_model{
-  //width: 150px;
-  margin: 0;
+  width: 33.3333%;
+  text-align: center;
+  /*margin: 0;*/
+  /*color: #F56C6C;*/
+}
+.father_button{
+  width: 100%;
+}
+.upload-demo1{
+  width: 100%;
+}
+.form_file{
+  margin-bottom: 0px;
+}
+.form_filee{
+  margin-bottom: 15px;
+}
+.message_warn{
+  font-size: 12px;
+  color: var(--el-text-color-regular);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  line-height: 0px;
+  /*margin-bottom: 0px;*/
+}
+
+.chuangjian{
+  width: 50%;
+  text-align: center;
+}
+.button_chuang{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
