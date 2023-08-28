@@ -6,18 +6,16 @@
         <span class="text_header">&nbsp;&nbsp;数据分析处理</span></div></el-col>
   </el-row>
   <el-footer :style="{boxShadow:'--el-box-shadow-dark',
-  width:'100%',
-  margin:'0px 0px 5px 10px'}" class="inline-flex --el-box-shadow-dark"
-  h="30"
-  w="30"
-  m="2">
-
+  width:'100%', height:'100%',
+  margin:'0px 0px 5px 10px'}" class="inline-flex --el-box-shadow-dark">
+    <buttonn/>
   </el-footer>
 </template>
 
 <script setup>
 
 
+import Buttonn from "@/components/buttonn.vue";
 </script>
 
 <style scoped>

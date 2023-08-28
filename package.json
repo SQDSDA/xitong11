@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.0.1",
+    "echarts": "^5.4.3",
     "element-plus": "^2.3.10",
     "vue": "^3.3.4"
   },
