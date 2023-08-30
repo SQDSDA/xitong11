@@ -17,7 +17,8 @@
           <el-button class="button" text>Operation button</el-button>
         </div>
       </template>
-      <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+<!--      第一张图表-->
+      <Line_area/>
     </el-card>
     <el-card class="box-card2" shadow="always">
       <template #header>
@@ -26,7 +27,7 @@
           <el-button class="button" text>Operation button</el-button>
         </div>
       </template>
-      <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+      <World/>
     </el-card>
     </div>
     <div class="table_row">
@@ -37,7 +38,10 @@
 </template>
 
 <script setup>
-import Tablee from "@/components/subsub/tablee.vue";
+import Tablee from "@/components/subsub/tablee.vue"
+import Line_area from "@/components/subsub/line_area.vue";
+import World from "@/components/subsub/world.vue";
+
 </script>
 
 <style scoped>

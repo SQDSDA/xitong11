@@ -3,6 +3,23 @@
 </script>
 
 <template>
+  <el-row :gutter="10">
+    <el-col :span="6"><button class="btn-pill">
+      <span>情绪识别</span>
+    </button></el-col>
+    <el-col :span="6"><button class="btn-pill">
+      <span>情绪识别</span>
+    </button></el-col>
+    <el-col :span="6"><button class="btn-shine">
+    <span>情感识别</span>
+  </button></el-col>
+    <el-col :span="6"> <button class="btn-slide-line">
+      <span>IP数据识别</span>
+    </button></el-col>
+    <el-col :span="6"><button class="btn-slide-line center">
+      <span>主题聚类</span>
+    </button></el-col>
+  </el-row>
   <div class="container">
     <button class="btn-pill">
       <span>情绪识别</span>
@@ -20,6 +37,20 @@
 </template>
 
 <style scoped>
+.el-row {
+  margin-bottom: 20px;
+}
+.el-row:last-child {
+  margin-bottom: 0;
+}
+.el-col {
+  border-radius: 4px;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
 .container {
   width: 100%;
   display: flex;

@@ -1,0 +1,32 @@
+{
+  "dataList": [
+    {
+      "name": "阿富汗",
+      "value": 0,
+      "cityName": "(亚洲)阿富汗",
+      "proportion": "0",
+      "accountNum": "0"
+    },
+    {
+      "name": "安哥拉",
+      "value": 0,
+      "cityName": "(非洲)安哥拉",
+      "proportion": "0%",
+      "accountNum": "0"
+    },
+    {
+      "name": "俄罗斯",
+      "cityName": "(欧洲)俄罗斯",
+      "proportion": "12%",
+      "value": 711.476,
+      "accountNum": 20
+    },
+    {
+      "name": "卢旺达",
+      "value": 0,
+      "cityName": "(非洲)卢旺达",
+      "proportion": "0%",
+      "accountNum": "0"
+    }
+  ]
+}
