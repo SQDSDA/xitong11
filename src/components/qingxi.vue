@@ -3,22 +3,31 @@
 }" class="el_row11">
     <el-col :span="24">
       <div class="grid-content ep-bg-purple-dark --el-box-shadow-darkk" >
-        <span class="text_header">&nbsp;&nbsp;数据分析处理</span></div></el-col>
+        <span class="text_header">&nbsp;&nbsp;数据分析与清洗</span></div></el-col>
   </el-row>
   <el-footer :style="{boxShadow:'--el-box-shadow-dark',
   width:'100%', height:'100%',
   margin:'0px 0px 5px 10px'}" class="inline-flex --el-box-shadow-dark">
+    <div class="buttonn_com">
+      <qingxisub/>
+    </div>
+    <div class="buttonn_com">
     <buttonn/>
+    </div>
   </el-footer>
 </template>
 
 <script setup>
 
-
+import qingxisub from "@/components/qingxisub.vue";
 import Buttonn from "@/components/buttonn.vue";
 </script>
 
 <style scoped>
+
+.buttonn_com{
+  margin: 10px 20px 10px 10px;
+}
 
 .grid-content {
   border-radius: 4px;

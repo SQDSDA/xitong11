@@ -1,42 +1,37 @@
-<script setup>
-
-</script>
 
 <template>
-  <el-row :gutter="10">
-    <el-col :span="6"><button class="btn-pill">
+  <el-row :gutter="10" :align="'middle'">
+    <el-col :span="4">
+      <div class="btn-pilll">
+        <span class="text_ss">数据分析：</span>
+      </div>
+    </el-col>
+    <el-col :span="5"><button class="btn-pill">
       <span>情绪识别</span>
     </button></el-col>
-    <el-col :span="6"><button class="btn-pill">
-      <span>情绪识别</span>
-    </button></el-col>
-    <el-col :span="6"><button class="btn-shine">
+    <el-col :span="5"><button class="btn-shine">
     <span>情感识别</span>
   </button></el-col>
-    <el-col :span="6"> <button class="btn-slide-line">
+    <el-col :span="5"> <button class="btn-slide-line">
       <span>IP数据识别</span>
     </button></el-col>
-    <el-col :span="6"><button class="btn-slide-line center">
+    <el-col :span="5"><button class="btn-slide-line center">
       <span>主题聚类</span>
     </button></el-col>
   </el-row>
-  <div class="container">
-    <button class="btn-pill">
-      <span>情绪识别</span>
-    </button>
-    <button class="btn-shine">
-      <span>情感识别</span>
-    </button>
-    <button class="btn-slide-line">
-      <span>IP数据识别</span>
-    </button>
-    <button class="btn-slide-line center">
-      <span>主题聚类</span>
-    </button>
-  </div>
 </template>
 
+<script>
+
+</script>
+
 <style scoped>
+.btn-pilll{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 .el-row {
   margin-bottom: 20px;
 }
@@ -57,12 +52,27 @@
   align-items: center;
  justify-content: space-between;
 }
+
+.text_ss{
+  font-weight: bold;
+}
+
+.text_pailie{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 button {
   position: relative;
-  margin: 10px;
+  margin: 10px 20px 10px 10px;
   padding: 5px 12px;
   height: 45px;
-  width: 150px;
+  width: 100%;
   outline: none;
   text-decoration: none;
   display: flex;
